@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mestre do Álbum - Match de Trocas!</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #0d0e31;
+            margin-bottom: 5px;
+        }
+
+        p {
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #00c853;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .loading {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>🏆 Mestre do Álbum</h2>
+        <p>Você recebeu um convite para cruzar listas e trocar figurinhas!</p>
+
+        <a id="btnOpen" class="btn" href="#">Abrir no Aplicativo</a>
+        <div class="loading" id="statusText">Verificando aplicativo...</div>
+    </div>
+
+    <script>
+        // Captura o código da troca na URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const dataParam = urlParams.get('data');
+
+        // Link da sua página na Play Store
+        const playStoreUrl = "https://play.google.com/store/apps/details?id=com.higorfernandes.mestredoalbum";
+
+        if (dataParam) {
+            // Cria um link mágico do Android que força a abertura do seu App
+            // Se o app não estiver instalado, a propriedade browser_fallback_url manda para a Play Store!
+            const intentLink = "intent://hofernandes.github.io/Mestredolbum-web/?data=" + dataParam + "#Intent;scheme=https;package=com.higorfernandes.mestredoalbum;S.browser_fallback_url=" + encodeURIComponent(playStoreUrl) + ";end;";
+
+            const btn = document.getElementById('btnOpen');
+            btn.href = intentLink;
+
+            document.getElementById('statusText').innerText = "Abrindo aplicativo...";
+
+            // Dispara automaticamente assim que a pessoa entra na página
+            window.location.href = intentLink;
+        } else {
+            // Se abrir a página sem nenhum código de troca
+            document.getElementById('btnOpen').innerText = "Baixar o Aplicativo";
+            document.getElementById('btnOpen').href = playStoreUrl;
+            document.getElementById('statusText').innerText = "Organize suas figurinhas grátis!";
+        }
+    </script>
+</body>
+
+</html>
