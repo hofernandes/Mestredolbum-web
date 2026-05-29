@@ -1,38 +1,44 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🏆 Mestre do Álbum Copa 2026</title>
     <meta name="description" content="A ferramenta definitiva para organizar sua coleção, gerenciar repetidas e cruzar listas sem precisar de internet!">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
         :root {
-            --primary-bg: #0d0e31;
-            --secondary-bg: #f0f2f5;
-            --accent-green: #00c853;
+            --primary-color: #0d0e31;
+            --primary-light: #1a1c52;
+            --accent-color: #00c853;
             --accent-hover: #00e676;
-            --text-dark: #333333;
-            --text-light: #ffffff;
+            --bg-color: #f4f7f6;
             --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--secondary-bg);
-            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Overlay de Redirecionamento */
+        /* --- TELA DE REDIRECIONAMENTO (DEEP LINK) --- */
         #redirect-overlay {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: var(--primary-bg);
-            color: var(--text-light);
+            background-color: var(--primary-color);
+            color: var(--white);
             z-index: 9999;
             flex-direction: column;
             justify-content: center;
@@ -40,241 +46,417 @@
             text-align: center;
         }
 
-        #redirect-overlay .spinner {
-            border: 6px solid rgba(255,255,255,0.3);
-            border-top: 6px solid var(--accent-green);
+        .spinner {
+            border: 5px solid rgba(255,255,255,0.2);
+            border-top: 5px solid var(--accent-color);
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             animation: spin 1s linear infinite;
             margin-bottom: 20px;
         }
 
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* Header Promocional */
-        header {
-            background-color: var(--primary-bg);
-            color: var(--text-light);
-            padding: 60px 20px;
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 80px 20px 100px;
             text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
         }
 
-        header h1 {
-            margin: 0 0 10px 0;
-            font-size: 2.5rem;
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
         }
 
-        header p {
-            font-size: 1.2rem;
-            max-width: 600px;
+        .hero p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            max-width: 700px;
             margin: 0 auto;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             opacity: 0.9;
         }
 
         .btn {
             display: inline-block;
-            padding: 15px 30px;
-            background: var(--accent-green);
-            color: var(--text-light);
+            padding: 16px 35px;
+            background: var(--accent-color);
+            color: var(--white);
             text-decoration: none;
             border-radius: 30px;
-            font-weight: bold;
-            font-size: 18px;
-            transition: background 0.3s, transform 0.2s;
-            box-shadow: 0 4px 15px rgba(0, 200, 83, 0.4);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 200, 83, 0.4);
+            border: none;
+            cursor: pointer;
         }
 
         .btn:hover {
             background: var(--accent-hover);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 200, 83, 0.5);
         }
 
-        /* Seções Gerais */
+        /* --- SEÇÕES GERAIS --- */
         section {
-            padding: 60px 20px;
-            max-width: 900px;
+            padding: 80px 20px;
+            max-width: 1100px;
             margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 50px;
+        }
+
+        /* --- FEATURES GRID --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
             text-align: center;
         }
 
-        section h2 {
-            color: var(--primary-bg);
-            font-size: 2rem;
-            margin-bottom: 30px;
+        .feature-card:hover {
+            transform: translateY(-5px);
         }
 
-        /* Vídeo */
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- VIDEO CONTAINER --- */
         .video-container {
             position: relative;
             padding-bottom: 56.25%; /* Proporção 16:9 */
             height: 0;
             overflow: hidden;
-            max-width: 100%;
             background: #000;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
+        
         .video-container iframe {
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
+            border: 0;
         }
 
-        /* Screenshots */
-        .screenshots-grid {
+        /* --- SCREENSHOTS CAROUSEL --- */
+        .screenshots-wrapper {
             display: flex;
             gap: 20px;
             overflow-x: auto;
-            padding: 10px;
-            snap-type: x mandatory;
+            padding: 20px 10px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-color) var(--bg-color);
         }
+
+        .screenshots-wrapper::-webkit-scrollbar {
+            height: 8px;
+        }
+        .screenshots-wrapper::-webkit-scrollbar-thumb {
+            background-color: var(--accent-color);
+            border-radius: 10px;
+        }
+
         .screenshot-item {
             flex: 0 0 auto;
-            width: 250px;
-            height: 500px;
-            background-color: #ddd;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 260px;
+            height: 540px;
+            border-radius: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             scroll-snap-align: center;
+            overflow: hidden;
+            background-color: var(--primary-color);
+        }
+
+        .screenshot-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* --- RELEASE NOTES --- */
+        .release-notes-container {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .release-note {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .release-note:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .release-note h3 {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: #888;
+            gap: 10px;
+        }
+
+        .release-note ul {
+            list-style: none;
+        }
+
+        .release-note li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            color: var(--text-muted);
+        }
+
+        .release-note li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
             font-weight: bold;
         }
-        /* Se quiser colocar imagens reais, use background-image na class acima ou coloque <img> dentro da div */
 
-        /* Release Notes & Apoio */
-        .card {
-            background: var(--card-bg);
-            padding: 30px;
+        /* --- APOIE O PROJETO --- */
+        .support-section {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+            margin-bottom: -1px; /* Remove gap com footer */
+        }
+
+        .support-section p {
+            max-width: 600px;
+            margin: 0 auto 20px;
+            opacity: 0.9;
+        }
+
+        .pix-container {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            text-align: left;
-            margin-bottom: 20px;
-        }
-        .card h3 { margin-top: 0; color: var(--primary-bg); }
-        .card ul { padding-left: 20px; }
-        .card li { margin-bottom: 10px; }
-
-        .pix-key {
-            background: var(--secondary-bg);
-            padding: 15px;
-            border-radius: 8px;
-            font-family: monospace;
-            font-size: 1.1rem;
-            text-align: center;
-            word-break: break-all;
+            display: inline-block;
             margin: 20px 0;
-            border: 2px dashed #ccc;
+            font-family: monospace;
+            font-size: 1.2rem;
+            word-break: break-all;
+            max-width: 100%;
         }
 
+        /* --- FOOTER --- */
         footer {
-            background-color: var(--primary-bg);
-            color: #aaa;
+            background-color: #080921;
+            color: #888;
             text-align: center;
-            padding: 30px 20px;
-            font-size: 14px;
+            padding: 40px 20px;
         }
-        footer a { color: var(--accent-green); text-decoration: none; }
-        footer a:hover { text-decoration: underline; }
+
+        footer p { margin-bottom: 10px; }
+        footer a { color: var(--accent-color); text-decoration: none; transition: color 0.3s; }
+        footer a:hover { color: var(--accent-hover); text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .section-title { font-size: 1.8rem; }
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- Tela de Carregamento para Deep Link -->
+    <!-- OVERLAY DE CARREGAMENTO PARA DEEP LINK -->
     <div id="redirect-overlay">
         <div class="spinner"></div>
-        <h2>Mestre do Álbum</h2>
-        <p>Recebendo figurinhas...</p>
-        <p style="font-size: 12px; color: #888;">Abrindo no aplicativo ou Play Store.</p>
+        <h2 style="margin-bottom: 10px; font-weight: 800;">Mestre do Álbum</h2>
+        <p>Processando troca de figurinhas...</p>
+        <p style="font-size: 0.85rem; color: #aaa; margin-top: 10px;">Redirecionando para o aplicativo.</p>
     </div>
 
-    <!-- Início do Site Promocional -->
-    <header>
+    <!-- HEADER / HERO -->
+    <header class="hero">
         <h1>🏆 Mestre do Álbum</h1>
-        <p>A ferramenta definitiva para colecionadores gerenciarem e trocarem suas figurinhas da Copa 2026. Controle, estatísticas e radar P2P offline!</p>
-        <a href="https://play.google.com/store/apps/details?id=com.higorfernandes.mestredoalbum" class="btn" target="_blank">Baixar Agora na Play Store</a>
+        <p>A ferramenta definitiva para organizar sua coleção, gerenciar repetidas e realizar trocas ao vivo sem precisar de internet.</p>
+        <a href="https://play.google.com/store/apps/details?id=com.higorfernandes.mestredoalbum" class="btn" target="_blank">Baixar Agora na Google Play</a>
     </header>
 
-    <!-- Seção de Vídeo -->
-    <section id="demo">
-        <h2>Veja em Ação</h2>
+    <!-- FUNCIONALIDADES -->
+    <section>
+        <h2 class="section-title">Controle Total da sua Coleção</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📡</div>
+                <h3>Radar P2P Offline</h3>
+                <p>Encontre colecionadores próximos via Bluetooth e Nearby. Faça o match de listas e troque figurinhas na hora, sem depender de 3G/Wi-Fi!</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Estatísticas Precisas</h3>
+                <p>Acompanhe a porcentagem de conclusão do álbum. Divisão perfeita entre figurinhas Oficiais, Coca-Cola, McDonald's e Extras.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">☁️</div>
+                <h3>Backup Seguro</h3>
+                <p>Nunca perca seu progresso. Salve todo o seu álbum localmente ou exporte para a nuvem de forma rápida e intuitiva.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎉</div>
+                <h3>Estante de Troféus</h3>
+                <p>Receba selos visuais, suba de patente militar de colecionador e comemore com confetes dinâmicos ao completar seleções!</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📲</div>
+                <h3>Design Premium</h3>
+                <p>Interface Dark Mode nativa, limpa e responsiva, feita para proporcionar a melhor usabilidade durante a sua organização.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📤</div>
+                <h3>Exportação Inteligente</h3>
+                <p>Gere textos automáticos com suas faltantes e repetidas organizadas por emojis para compartilhar rapidamente no WhatsApp.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEMONSTRAÇÃO EM VÍDEO -->
+    <section style="background-color: var(--card-bg); border-radius: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.03);">
+        <h2 class="section-title" style="margin-bottom: 30px;">Veja o App em Ação</h2>
         <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/GDjMrDCBTQQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/GDjMrDCBTQQ" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </section>
 
-    <!-- Seção de Screenshots (Substitua o conteúdo pelas tags <img> dos seus prints) -->
-    <section id="screenshots">
-        <h2>Interface Premium e Nativa</h2>
-        <div class="screenshots-grid">
-            <div class="screenshot-item">Screenshot 1 (Dashboard)</div>
-            <div class="screenshot-item">Screenshot 2 (Radar Local)</div>
-            <div class="screenshot-item">Screenshot 3 (Estatísticas)</div>
-            <div class="screenshot-item">Screenshot 4 (Exportação)</div>
+    <!-- CARROSSEL DE SCREENSHOTS -->
+    <section>
+        <h2 class="section-title">Conheça a Interface</h2>
+        <div class="screenshots-wrapper">
+            <div class="screenshot-item"><img src="imagens/1.jpeg" loading="lazy" alt="Tela do App 1"></div>
+            <div class="screenshot-item"><img src="imagens/2.jpeg" loading="lazy" alt="Tela do App 2"></div>
+            <div class="screenshot-item"><img src="imagens/3.jpeg" loading="lazy" alt="Tela do App 3"></div>
+            <div class="screenshot-item"><img src="imagens/4.jpeg" loading="lazy" alt="Tela do App 4"></div>
+            <div class="screenshot-item"><img src="imagens/5.jpeg" loading="lazy" alt="Tela do App 5"></div>
+            <div class="screenshot-item"><img src="imagens/6.jpeg" loading="lazy" alt="Tela do App 6"></div>
+            <div class="screenshot-item"><img src="imagens/7.jpeg" loading="lazy" alt="Tela do App 7"></div>
+            <div class="screenshot-item"><img src="imagens/8.jpeg" loading="lazy" alt="Tela do App 8"></div>
+            <div class="screenshot-item"><img src="imagens/9.jpeg" loading="lazy" alt="Tela do App 9"></div>
+            <div class="screenshot-item"><img src="imagens/10.jpeg" loading="lazy" alt="Tela do App 10"></div>
+            <div class="screenshot-item"><img src="imagens/11.jpeg" loading="lazy" alt="Tela do App 11"></div>
+            <div class="screenshot-item"><img src="imagens/12.jpeg" loading="lazy" alt="Tela do App 12"></div>
+            <div class="screenshot-item"><img src="imagens/13.jpeg" loading="lazy" alt="Tela do App 13"></div>
+            <div class="screenshot-item"><img src="imagens/14.jpeg" loading="lazy" alt="Tela do App 14"></div>
+            <div class="screenshot-item"><img src="imagens/15.jpeg" loading="lazy" alt="Tela do App 15"></div>
+            <div class="screenshot-item"><img src="imagens/16.jpeg" loading="lazy" alt="Tela do App 16"></div>
+            <div class="screenshot-item"><img src="imagens/17.jpeg" loading="lazy" alt="Tela do App 17"></div>
         </div>
     </section>
 
-    <!-- Seção Release Notes -->
-    <section id="news">
-        <h2>Últimas Atualizações</h2>
-        <div class="card">
-            <h3>Versão 3.0.5 a 3.0.0 (Destaques)</h3>
-            <ul>
-                <li><strong>Radar Local P2P:</strong> Encontre colecionadores e faça trocas seguras ao vivo via Bluetooth/Nearby, sem precisar de internet!</li>
-                <li><strong>Avaliação e Engajamento:</strong> Novas telas de celebração com confetes dinâmicos e sistema de patentes conforme sua coleção cresce.</li>
-                <li><strong>Negociação 1-para-1:</strong> Cruza listas de forma inteligente e debita/credita automaticamente no seu álbum após a troca.</li>
-                <li><strong>Sistema de Backup Cloud/Local:</strong> Salve, importe ou exporte todo o seu progresso com segurança.</li>
-                <li><strong>Estante de Troféus:</strong> Celebre coleções 100% (Coca-Cola, McDonald's e Extras) com design premium.</li>
-            </ul>
+    <!-- RELEASE NOTES -->
+    <section>
+        <h2 class="section-title">Últimas Atualizações</h2>
+        <div class="release-notes-container">
+            <div class="release-note">
+                <h3>🚀 Destaques da Versão 3.x</h3>
+                <ul>
+                    <li><strong>Radar P2P Blindado:</strong> Conexão via Bluetooth altamente otimizada, impedindo quedas e garantindo trocas offline seguras em bancas e shoppings.</li>
+                    <li><strong>Negociação Inteligente:</strong> Ao trocar com outra pessoa, o app debita e credita automaticamente as listas de ambos em tempo real.</li>
+                    <li><strong>Avaliação e Engajamento:</strong> Celebrações visuais com confetes dinâmicos e sistema de evolução de patentes ao registrar figurinhas.</li>
+                    <li><strong>Deep Links Corrigidos:</strong> Navegação web inteligente (`hofernandes.github.io`) para facilitar o compartilhamento de convites.</li>
+                </ul>
+            </div>
+            <div class="release-note">
+                <h3>⭐ Destaques da Versão 2.x</h3>
+                <ul>
+                    <li><strong>Estante de Troféus:</strong> Conclua equipes ou sessões promocionais (Coca-Cola, Extras) e desbloqueie selos dourados.</li>
+                    <li><strong>Feedback Tátil:</strong> Vibração imersiva no celular ao adicionar figurinhas.</li>
+                    <li><strong>Backup e Exportação:</strong> Novo sistema para salvar, importar e desfazer últimas ações no álbum.</li>
+                    <li><strong>Sistema Justo de Recompensas:</strong> Acesse funções premium assistindo a anúncios rápidos, sem cobranças abusivas.</li>
+                </ul>
+            </div>
         </div>
     </section>
 
-    <!-- Apoie o Projeto -->
-    <section id="support">
-        <h2>Apoie o Projeto ❤️</h2>
-        <div class="card" style="text-align: center;">
-            <p>O <strong>Mestre do Álbum</strong> é desenvolvido de forma independente, focado em trazer a melhor experiência sem abusar de anúncios invasivos.</p>
-            <p>Se a ferramenta ajudou você a completar seu álbum, considere fazer uma doação via PIX para ajudar a manter os servidores e a licença das lojas de aplicativos!</p>
-            
-            <div class="pix-key" id="pixKey">d0553b54-898a-4b5c-bd78-04dac65e1d17</div>
-            <button class="btn" style="background: var(--primary-bg);" onclick="copyPix()">Copiar Chave PIX</button>
-        </div>
+    <!-- APOIE O PROJETO -->
+    <section class="support-section">
+        <h2 class="section-title" style="color: var(--white); margin-bottom: 20px;">Apoie o Projeto ❤️</h2>
+        <p>O <strong>Mestre do Álbum</strong> é mantido de forma independente com muito carinho para proporcionar a melhor experiência, sem excesso de propagandas.</p>
+        <p>Se o app ajudou você a completar seu álbum, considere fortalecer o projeto fazendo uma doação via PIX para cobrir os custos dos servidores e lojas de aplicativos!</p>
+        
+        <div class="pix-container" id="pixKey">d0553b54-898a-4b5c-bd78-04dac65e1d17</div>
+        <br>
+        <button class="btn" style="background: var(--card-bg); color: var(--primary-color);" onclick="copyPix()">Copiar Chave PIX</button>
     </section>
 
+    <!-- FOOTER -->
     <footer>
-        <p>&copy; 2024 Mestre do Álbum. Desenvolvido por Higor Fernandes.</p>
+        <p>&copy; 2026 Mestre do Álbum. Desenvolvido por Higor Fernandes.</p>
         <p>
-            <a href="privacidade.html">Política de Privacidade</a> • 
-            <a href="mailto:higorofernandes@gmail.com">Contato</a>
+            <a href="https://hofernandes.github.io/Mestredolbum-web/politica-de-privacidade.html" target="_blank">Política de Privacidade</a> &bull; 
+            <a href="mailto:higor.oliviera.fernandes@gmail.com">Contato (Suporte)</a>
         </p>
     </footer>
 
     <script>
-        // Função para Copiar a chave PIX
+        // Função para copiar a chave PIX
         function copyPix() {
             const text = document.getElementById('pixKey').innerText;
             navigator.clipboard.writeText(text).then(() => {
-                alert('Chave PIX copiada! Muito obrigado pelo apoio.');
+                alert('Chave PIX copiada! Muito obrigado pelo apoio 🏆');
             });
         }
 
-        // LÓGICA DE DEEP LINK / MATCH DE TROCAS
+        // Lógica de Redirecionamento Deep Link (Para quem vem com convite de troca "?data=")
         const urlParams = new URLSearchParams(window.location.search);
         const dataParam = urlParams.get('data');
         const playStoreUrl = "https://play.google.com/store/apps/details?id=com.higorfernandes.mestredoalbum";
 
         if (dataParam) {
-            // Ativa o overlay bloqueando a visão da Landing Page para focar no fluxo de redirecionamento
             document.getElementById('redirect-overlay').style.display = 'flex';
-
+            document.body.style.overflow = 'hidden'; // Evita rolagem durante redirecionamento
+            
             const intentLink = "intent://hofernandes.github.io/Mestredolbum/?data=" + dataParam + "#Intent;scheme=https;package=com.higorfernandes.mestredoalbum;S.browser_fallback_url=" + encodeURIComponent(playStoreUrl) + ";end;";
             
-            // Tenta abrir o App nativo (ou a loja como fallback estipulado na intent)
             window.location.href = intentLink;
         }
     </script>
