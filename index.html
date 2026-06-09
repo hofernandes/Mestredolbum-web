@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,11 +21,7 @@
             --white: #ffffff;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -44,14 +43,14 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            padding: 20px;
         }
 
         .spinner {
             border: 5px solid rgba(255,255,255,0.2);
             border-top: 5px solid var(--accent-color);
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 60px; height: 60px;
             animation: spin 1s linear infinite;
             margin-bottom: 20px;
         }
@@ -67,21 +66,8 @@
             clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
         }
 
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 15px;
-            letter-spacing: -1px;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            font-weight: 300;
-            max-width: 700px;
-            margin: 0 auto;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
+        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; }
+        .hero p { font-size: 1.25rem; font-weight: 300; max-width: 700px; margin: 0 auto 30px; opacity: 0.9; }
 
         .btn {
             display: inline-block;
@@ -98,33 +84,15 @@
             cursor: pointer;
         }
 
-        .btn:hover {
-            background: var(--accent-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(0, 200, 83, 0.5);
-        }
+        .btn:hover { background: var(--accent-hover); transform: translateY(-3px); box-shadow: 0 12px 25px rgba(0, 200, 83, 0.5); }
 
         /* --- SEÇÕES GERAIS --- */
-        section {
-            padding: 80px 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+        section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; }
 
-        .section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            margin-bottom: 50px;
-        }
+        .section-title { text-align: center; font-size: 2.2rem; font-weight: 800; color: var(--primary-color); margin-bottom: 50px; }
 
         /* --- FEATURES GRID --- */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 
         .feature-card {
             background: var(--card-bg);
@@ -135,43 +103,23 @@
             text-align: center;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        .feature-card h3 {
-            font-size: 1.3rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .feature-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
+        .feature-card:hover { transform: translateY(-5px); }
+        .feature-icon { font-size: 3rem; margin-bottom: 15px; }
+        .feature-card h3 { font-size: 1.3rem; color: var(--primary-color); margin-bottom: 10px; }
+        .feature-card p { color: var(--text-muted); font-size: 0.95rem; }
 
         /* --- VIDEO CONTAINER --- */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* Proporção 16:9 */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             background: #000;
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
-        
-        .video-container iframe {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: 0;
-        }
+
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
         /* --- SCREENSHOTS CAROUSEL --- */
         .screenshots-wrapper {
@@ -184,18 +132,12 @@
             scrollbar-color: var(--accent-color) var(--bg-color);
         }
 
-        .screenshots-wrapper::-webkit-scrollbar {
-            height: 8px;
-        }
-        .screenshots-wrapper::-webkit-scrollbar-thumb {
-            background-color: var(--accent-color);
-            border-radius: 10px;
-        }
+        .screenshots-wrapper::-webkit-scrollbar { height: 8px; }
+        .screenshots-wrapper::-webkit-scrollbar-thumb { background-color: var(--accent-color); border-radius: 10px; }
 
         .screenshot-item {
             flex: 0 0 auto;
-            width: 260px;
-            height: 540px;
+            width: 260px; height: 540px;
             border-radius: 24px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             scroll-snap-align: center;
@@ -203,60 +145,17 @@
             background-color: var(--primary-color);
         }
 
-        .screenshot-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
+        .screenshot-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
         /* --- RELEASE NOTES --- */
-        .release-notes-container {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
+        .release-notes-container { background: var(--card-bg); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
 
-        .release-note {
-            margin-bottom: 30px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .release-note:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-
-        .release-note h3 {
-            color: var(--primary-color);
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .release-note ul {
-            list-style: none;
-        }
-
-        .release-note li {
-            position: relative;
-            padding-left: 25px;
-            margin-bottom: 12px;
-            color: var(--text-muted);
-        }
-
-        .release-note li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-            font-weight: bold;
-        }
+        .release-note { margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid #eee; }
+        .release-note:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+        .release-note h3 { color: var(--primary-color); font-size: 1.4rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .release-note ul { list-style: none; }
+        .release-note li { position: relative; padding-left: 25px; margin-bottom: 12px; color: var(--text-muted); }
+        .release-note li::before { content: '✓'; position: absolute; left: 0; color: var(--accent-color); font-weight: bold; }
 
         /* --- APOIE O PROJETO --- */
         .support-section {
@@ -265,18 +164,14 @@
             text-align: center;
             padding: 80px 20px;
             clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
-            margin-bottom: -1px; /* Remove gap com footer */
+            margin-bottom: -1px;
         }
 
-        .support-section p {
-            max-width: 600px;
-            margin: 0 auto 20px;
-            opacity: 0.9;
-        }
+        .support-section p { max-width: 600px; margin: 0 auto 20px; opacity: 0.9; }
 
         .pix-container {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px dashed rgba(255, 255, 255, 0.3);
+            background: rgba(255,255,255,0.1);
+            border: 2px dashed rgba(255,255,255,0.3);
             padding: 20px;
             border-radius: 15px;
             display: inline-block;
@@ -288,13 +183,7 @@
         }
 
         /* --- FOOTER --- */
-        footer {
-            background-color: #080921;
-            color: #888;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
+        footer { background-color: #080921; color: #888; text-align: center; padding: 40px 20px; }
         footer p { margin-bottom: 10px; }
         footer a { color: var(--accent-color); text-decoration: none; transition: color 0.3s; }
         footer a:hover { color: var(--accent-hover); text-decoration: underline; }
@@ -314,6 +203,17 @@
         <h2 style="margin-bottom: 10px; font-weight: 800;">Mestre do Álbum</h2>
         <p>Processando troca de figurinhas...</p>
         <p style="font-size: 0.85rem; color: #aaa; margin-top: 10px;">Redirecionando para o aplicativo.</p>
+    </div>
+
+    <!-- FALLBACK: APP NÃO INSTALADO -->
+    <div id="playStoreFallback" style="display:none; text-align:center; padding: 40px 20px; max-width: 500px; margin: 30px auto;">
+        <p style="font-size: 1.1rem; margin-bottom: 20px; color: #333;">
+            📲 Você ainda não tem o <strong>Mestre do Álbum</strong> instalado.<br>
+            Baixe agora para ver o resultado da troca com seu amigo!
+        </p>
+        <a href="https://play.google.com/store/apps/details?id=com.higorfernandes.mestredoalbum" class="btn">
+            Baixar na Google Play
+        </a>
     </div>
 
     <!-- HEADER / HERO -->
@@ -402,7 +302,7 @@
                     <li><strong>Radar P2P Blindado:</strong> Conexão via Bluetooth altamente otimizada, impedindo quedas e garantindo trocas offline seguras em bancas e shoppings.</li>
                     <li><strong>Negociação Inteligente:</strong> Ao trocar com outra pessoa, o app debita e credita automaticamente as listas de ambos em tempo real.</li>
                     <li><strong>Avaliação e Engajamento:</strong> Celebrações visuais com confetes dinâmicos e sistema de evolução de patentes ao registrar figurinhas.</li>
-                    <li><strong>Deep Links Corrigidos:</strong> Navegação web inteligente (`hofernandes.github.io`) para facilitar o compartilhamento de convites.</li>
+                    <li><strong>Deep Links Corrigidos:</strong> Compartilhamento de convites de troca agora abre o app diretamente com os dados preservados.</li>
                 </ul>
             </div>
             <div class="release-note">
@@ -422,7 +322,6 @@
         <h2 class="section-title" style="color: var(--white); margin-bottom: 20px;">Apoie o Projeto ❤️</h2>
         <p>O <strong>Mestre do Álbum</strong> é mantido de forma independente com muito carinho para proporcionar a melhor experiência, sem excesso de propagandas.</p>
         <p>Se o app ajudou você a completar seu álbum, considere fortalecer o projeto fazendo uma doação via PIX para cobrir os custos dos servidores e lojas de aplicativos!</p>
-        
         <div class="pix-container" id="pixKey">d0553b54-898a-4b5c-bd78-04dac65e1d17</div>
         <br>
         <button class="btn" style="background: var(--card-bg); color: var(--primary-color);" onclick="copyPix()">Copiar Chave PIX</button>
@@ -432,13 +331,12 @@
     <footer>
         <p>&copy; 2026 Mestre do Álbum. Desenvolvido por Higor Fernandes.</p>
         <p>
-            <a href="https://hofernandes.github.io/Mestredolbum-web/politica-de-privacidade.html" target="_blank">Política de Privacidade</a> &bull; 
+            <a href="https://hofernandes.github.io/Mestredolbum-web/politica-de-privacidade.html" target="_blank">Política de Privacidade</a> &bull;
             <a href="mailto:higor.oliviera.fernandes@gmail.com">Contato (Suporte)</a>
         </p>
     </footer>
 
     <script>
-        // Função para copiar a chave PIX
         function copyPix() {
             const text = document.getElementById('pixKey').innerText;
             navigator.clipboard.writeText(text).then(() => {
@@ -446,18 +344,28 @@
             });
         }
 
-        // Lógica de Redirecionamento Deep Link (Para quem vem com convite de troca "?data=")
-        const urlParams = new URLSearchParams(window.location.search);
-        const dataParam = urlParams.get('data');
-        const playStoreUrl = "https://play.google.com/store/apps/details?id=com.higorfernandes.mestredoalbum";
+        // Deep Link: abre o app diretamente com os dados de troca preservados
+        (function () {
+            const data = new URLSearchParams(window.location.search).get('data');
+            if (!data) return;
 
-        if (dataParam) {
+            // Mostra tela de carregamento e bloqueia scroll
             document.getElementById('redirect-overlay').style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Evita rolagem durante redirecionamento
-            
-            const intentLink = "intent://hofernandes.github.io/Mestredolbum/?data=" + dataParam + "#Intent;scheme=https;package=com.higorfernandes.mestredoalbum;S.browser_fallback_url=" + encodeURIComponent(playStoreUrl) + ";end;";
-            
-            window.location.href = intentLink;
-        }
+            document.body.style.overflow = 'hidden';
+
+            // Abre o app via esquema personalizado (não precisa de assetlinks.json)
+            window.location.href = 'mestredoalbum://trade?data=' + data;
+
+            // Após 2s: se ainda na página, o app não está instalado
+            setTimeout(function () {
+                document.getElementById('redirect-overlay').style.display = 'none';
+                document.body.style.overflow = '';
+                var fallback = document.getElementById('playStoreFallback');
+                fallback.style.display = 'block';
+                fallback.scrollIntoView({ behavior: 'smooth' });
+            }, 2000);
+        })();
     </script>
+
 </body>
+</html>
