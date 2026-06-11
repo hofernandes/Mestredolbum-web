@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🏆 Mestre do Álbum Copa 2026</title>
+    <title>🏆 Mestre das Figurinhas</title>
     <meta name="description" content="A ferramenta definitiva para organizar sua coleção, gerenciar repetidas e cruzar listas sem precisar de internet!">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
@@ -200,7 +200,7 @@
     <!-- OVERLAY DE CARREGAMENTO PARA DEEP LINK -->
     <div id="redirect-overlay">
         <div class="spinner"></div>
-        <h2 style="margin-bottom: 10px; font-weight: 800;">Mestre do Álbum</h2>
+        <h2 style="margin-bottom: 10px; font-weight: 800;">Mestre das Figurinhas</h2>
         <p>Processando troca de figurinhas...</p>
         <p style="font-size: 0.85rem; color: #aaa; margin-top: 10px;">Redirecionando para o aplicativo.</p>
     </div>
@@ -208,19 +208,19 @@
     <!-- FALLBACK: APP NÃO INSTALADO -->
     <div id="playStoreFallback" style="display:none; text-align:center; padding: 40px 20px; max-width: 500px; margin: 30px auto;">
         <p style="font-size: 1.1rem; margin-bottom: 20px; color: #333;">
-            📲 Você ainda não tem o <strong>Mestre do Álbum</strong> instalado.<br>
+            📲 Você ainda não tem o <strong>Mestre das Figurinhas</strong> instalado.<br>
             Baixe agora para ver o resultado da troca com seu amigo!
         </p>
-        <a href="https://play.google.com/store/apps/details?id=com.higorfernandes.mestredoalbum" class="btn">
+        <a href="https://play.google.com/store/apps/details?id=com.higorfernandes.mestredasfigurinhas" class="btn">
             Baixar na Google Play
         </a>
     </div>
 
     <!-- HEADER / HERO -->
     <header class="hero">
-        <h1>🏆 Mestre do Álbum</h1>
+        <h1>🏆 Mestre das Figurinhas</h1>
         <p>A ferramenta definitiva para organizar sua coleção, gerenciar repetidas e realizar trocas ao vivo sem precisar de internet.</p>
-        <a href="https://play.google.com/store/apps/details?id=com.higorfernandes.mestredoalbum" class="btn" target="_blank">Baixar Agora na Google Play</a>
+        <a href="https://play.google.com/store/apps/details?id=com.higorfernandes.mestredasfigurinhas" class="btn" target="_blank">Baixar Agora na Google Play</a>
     </header>
 
     <!-- FUNCIONALIDADES -->
@@ -235,7 +235,7 @@
             <div class="feature-card">
                 <div class="feature-icon">📊</div>
                 <h3>Estatísticas Precisas</h3>
-                <p>Acompanhe a porcentagem de conclusão do álbum. Divisão perfeita entre figurinhas Oficiais, Coca-Cola, McDonald's e Extras.</p>
+                <p>Acompanhe a porcentagem de conclusão do álbum. Divisão perfeita entre figurinhas Oficiais, Bebida, Fastfood e Extras.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">☁️</div>
@@ -308,7 +308,7 @@
             <div class="release-note">
                 <h3>⭐ Destaques da Versão 2.x</h3>
                 <ul>
-                    <li><strong>Estante de Troféus:</strong> Conclua equipes ou sessões promocionais (Coca-Cola, Extras) e desbloqueie selos dourados.</li>
+                    <li><strong>Estante de Troféus:</strong> Conclua equipes ou sessões promocionais (Bebida, Extras) e desbloqueie selos dourados.</li>
                     <li><strong>Feedback Tátil:</strong> Vibração imersiva no celular ao adicionar figurinhas.</li>
                     <li><strong>Backup e Exportação:</strong> Novo sistema para salvar, importar e desfazer últimas ações no álbum.</li>
                     <li><strong>Sistema Justo de Recompensas:</strong> Acesse funções premium assistindo a anúncios rápidos, sem cobranças abusivas.</li>
@@ -320,7 +320,7 @@
     <!-- APOIE O PROJETO -->
     <section class="support-section">
         <h2 class="section-title" style="color: var(--white); margin-bottom: 20px;">Apoie o Projeto ❤️</h2>
-        <p>O <strong>Mestre do Álbum</strong> é mantido de forma independente com muito carinho para proporcionar a melhor experiência, sem excesso de propagandas.</p>
+        <p>O <strong>Mestre das Figurinhas</strong> é mantido de forma independente com muito carinho para proporcionar a melhor experiência, sem excesso de propagandas.</p>
         <p>Se o app ajudou você a completar seu álbum, considere fortalecer o projeto fazendo uma doação via PIX para cobrir os custos dos servidores e lojas de aplicativos!</p>
         <div class="pix-container" id="pixKey">d0553b54-898a-4b5c-bd78-04dac65e1d17</div>
         <br>
@@ -329,10 +329,10 @@
 
     <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 Mestre do Álbum. Desenvolvido por Higor Fernandes.</p>
+        <p>&copy; 2026 Mestre das Figurinhas. Desenvolvido por Higor Fernandes.</p>
         <p>
             <a href="https://hofernandes.github.io/Mestredolbum-web/politica-de-privacidade.html" target="_blank">Política de Privacidade</a> &bull;
-            <a href="mailto:higor.oliviera.fernandes@gmail.com">Contato (Suporte)</a>
+            <a href="mailto:higor.oliveira.fernandes@gmail.com">Contato (Suporte)</a>
         </p>
     </footer>
 
@@ -354,7 +354,7 @@
             document.body.style.overflow = 'hidden';
 
             // Abre o app via esquema personalizado (não precisa de assetlinks.json)
-            window.location.href = 'mestredoalbum://trade?data=' + data;
+            window.location.href = 'mestredasfigurinhas://trade?data=' + data;
 
             // Após 2s: se ainda na página, o app não está instalado
             setTimeout(function () {
